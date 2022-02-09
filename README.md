@@ -3,6 +3,7 @@
 [![NPM Version](https://img.shields.io/npm/v/uvu-expect-dom)](https://www.npmjs.com/package/uvu-expect-dom)
 [![NPM Downloads](https://img.shields.io/npm/dw/uvu-expect-dom)](https://www.npmjs.com/package/uvu-expect-dom)
 [![Tests](https://github.com/pablo-abc/uvu-expect-dom/actions/workflows/test.yml/badge.svg)](https://github.com/pablo-abc/uvu-expect-dom/actions/workflows/test.yml)
+[![codecov](https://codecov.io/gh/pablo-abc/uvu-expect-dom/branch/main/graph/badge.svg?token=QMWPKRCHQY)](https://codecov.io/gh/pablo-abc/uvu-expect-dom)
 
 A plugin for [uvu-expect][uvu-expect] that builds on top of [@testing-library/jest-dom][jest-dom] to provide its same checkers but for uvu-expect.
 
