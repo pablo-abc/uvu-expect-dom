@@ -21,7 +21,7 @@ specifiers:
   tsm: ^2.2.1
   typescript: ^4.5.5
   uvu: ^0.5.3
-  uvu-expect: ^0.1.3
+  uvu-expect: ^0.2.0
 
 dependencies:
   '@testing-library/jest-dom': 5.16.2
@@ -46,7 +46,7 @@ devDependencies:
   tsm: 2.2.1
   typescript: 4.5.5
   uvu: 0.5.3
-  uvu-expect: 0.1.3_uvu@0.5.3
+  uvu-expect: 0.2.0_uvu@0.5.3
 
 packages:
 
@@ -2092,8 +2092,8 @@ packages:
     hasBin: true
     dev: true
 
-  /uvu-expect/0.1.3_uvu@0.5.3:
-    resolution: {integrity: sha512-lH8bqvTzk7e3/txKsiA1ox5bTCZAPYN+C1Xqlofh6t+SDEw9/gq8HM57zhFVbKHvrrhYrDnQMEVRAT2qKglKvw==}
+  /uvu-expect/0.2.0_uvu@0.5.3:
+    resolution: {integrity: sha512-JCb8GumR7GnUXHBNswwFmhCUJeJtXVV/7Ixk2lH2jwP4tm2+rpPFPVsm4cy7Yc+YzMJy3gEcLmJ5aCFHPhOUdw==}
     peerDependencies:
       uvu: ^0.5.3
     dependencies:

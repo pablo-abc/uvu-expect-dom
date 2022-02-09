@@ -32,10 +32,10 @@ import {
 } from './utils';
 
 export default function uvuDOM({
-  extendProperty,
   replaceProperty,
+  addProperty,
 }: ExtendExpectHelpers) {
-  replaceProperty('element', {
+  addProperty('element', {
     onAccess(this: ExpectContext) {
       const actual = this.flag('object');
       this.assert(
@@ -46,19 +46,19 @@ export default function uvuDOM({
     },
   });
 
-  replaceProperty('disabled', {
+  addProperty('disabled', {
     onAccess(this: ExpectContext) {
       assertDisabled.call(this, this.flag('object'));
     },
   });
 
-  replaceProperty('enabled', {
+  addProperty('enabled', {
     onAccess(this: ExpectContext) {
       assertEnabled.call(this, this.flag('object'));
     },
   });
 
-  extendProperty('empty', (handler) => ({
+  replaceProperty('empty', (handler) => ({
     onAccess(this: ExpectContext) {
       const actual = this.flag('object');
       if (actual && actual instanceof Element) {
@@ -72,7 +72,7 @@ export default function uvuDOM({
     },
   }));
 
-  replaceProperty('in', {
+  addProperty('in', {
     onCall(this: ExpectContext, container: Element) {
       const actual = this.flag('object') as Element;
       assert.instance(actual, Element);
@@ -85,7 +85,7 @@ export default function uvuDOM({
     },
   });
 
-  replaceProperty('html', {
+  addProperty('html', {
     onCall(this: ExpectContext, html: string) {
       const actual = this.flag('object') as Element;
       assert.instance(actual, Element);
@@ -94,13 +94,13 @@ export default function uvuDOM({
     },
   });
 
-  replaceProperty('document', {
+  addProperty('document', {
     onAccess(this: ExpectContext) {
       assertIsInTheDocument.call(this, this.flag('object') as any);
     },
   });
 
-  replaceProperty('invalid', {
+  addProperty('invalid', {
     onAccess(this: ExpectContext) {
       const actual = this.flag('object') as HTMLElement;
       assert.instance(actual, Element);
@@ -108,7 +108,7 @@ export default function uvuDOM({
     },
   });
 
-  replaceProperty('valid', {
+  addProperty('valid', {
     onAccess(this: ExpectContext) {
       const actual = this.flag('object') as HTMLElement;
       assert.instance(actual, Element);
@@ -116,7 +116,7 @@ export default function uvuDOM({
     },
   });
 
-  replaceProperty('required', {
+  addProperty('required', {
     onAccess(this: ExpectContext) {
       const actual = this.flag('object') as any;
       assert.instance(actual, Element);
@@ -124,7 +124,7 @@ export default function uvuDOM({
     },
   });
 
-  replaceProperty('visible', {
+  addProperty('visible', {
     onAccess(this: ExpectContext) {
       const actual = this.flag('object') as any;
       assert.instance(actual, Element);
@@ -132,34 +132,37 @@ export default function uvuDOM({
     },
   });
 
-  extendProperty(['include', 'includes', 'contain', 'contains'], (handler) => ({
-    onCall(this: ExpectContext, value: any) {
-      const actual = this.flag('object');
-      if (actual && actual instanceof Element) {
-        this.assert(
-          actual.contains(value),
-          'expected #{this} to contain #{exp}',
-          'expected #{this} not to contain #{exp}'
-        );
-      } else if (Array.isArray(actual) && this.flag('class')) {
-        const splitValues = splitClassNames(value);
-        this.assert(
-          splitValues.every((v) => actual.includes(v)),
-          'expected #{this} to contain: #{exp}',
-          'expected #{this} not to contain: #{exp}',
-          {
-            expects: splitValues.sort().join(' '),
-            actual: actual.sort().join(' '),
-            showDiff: !this.flag('negate'),
-          }
-        );
-      } else {
-        handler.onCall?.apply(this, arguments as any);
-      }
-    },
-  }));
+  replaceProperty(
+    ['include', 'includes', 'contain', 'contains'],
+    (handler) => ({
+      onCall(this: ExpectContext, value: any) {
+        const actual = this.flag('object');
+        if (actual && actual instanceof Element) {
+          this.assert(
+            actual.contains(value),
+            'expected #{this} to contain #{exp}',
+            'expected #{this} not to contain #{exp}'
+          );
+        } else if (Array.isArray(actual) && this.flag('class')) {
+          const splitValues = splitClassNames(value);
+          this.assert(
+            splitValues.every((v) => actual.includes(v)),
+            'expected #{this} to contain: #{exp}',
+            'expected #{this} not to contain: #{exp}',
+            {
+              expects: splitValues.sort().join(' '),
+              actual: actual.sort().join(' '),
+              showDiff: !this.flag('negate'),
+            }
+          );
+        } else {
+          handler.onCall?.apply(this, arguments as any);
+        }
+      },
+    })
+  );
 
-  extendProperty('members', (handler) => ({
+  replaceProperty('members', (handler) => ({
     onCall(this: ExpectContext, values: any[], ...args: any[]) {
       if (this.flag('class') && values.every((v) => typeof v === 'string')) {
         const splitValues = splitClassNames(values.join(' '));
@@ -170,7 +173,7 @@ export default function uvuDOM({
     },
   }));
 
-  replaceProperty('description', {
+  addProperty('description', {
     onAccess(this: ExpectContext) {
       const actual = this.flag('object') as Element;
       assert.instance(actual, Element);
@@ -180,7 +183,7 @@ export default function uvuDOM({
     },
   });
 
-  replaceProperty('accessibleName', {
+  addProperty('accessibleName', {
     onAccess(this: ExpectContext) {
       const actual = this.flag('object') as Element;
       assert.instance(actual, Element);
@@ -190,7 +193,7 @@ export default function uvuDOM({
     },
   });
 
-  replaceProperty('attribute', {
+  addProperty('attribute', {
     onCall(this: ExpectContext, name: string) {
       const actual = this.flag('object') as any;
       assertHasAttribute.call(this, actual, name);
@@ -198,7 +201,7 @@ export default function uvuDOM({
     },
   });
 
-  replaceProperty('class', {
+  addProperty('class', {
     onAccess(this: ExpectContext) {
       const actual = this.flag('object') as Element;
       assert.instance(actual, Element);
@@ -213,13 +216,13 @@ export default function uvuDOM({
     assertHasFocus.call(this, actual);
   }
 
-  replaceProperty(['focus', 'focused'], {
+  addProperty(['focus', 'focused'], {
     onAccess(this: ExpectContext) {
       assertFocus.call(this);
     },
   });
 
-  extendProperty(['equal', 'equals', 'eq'], (handler) => ({
+  replaceProperty(['equal', 'equals', 'eq'], (handler) => ({
     onCall(this: ExpectContext, value: string) {
       if (this.flag('class')) {
         const actual = this.flag('object') as any;
@@ -236,7 +239,7 @@ export default function uvuDOM({
     },
   }));
 
-  replaceProperty('formValues', {
+  addProperty('formValues', {
     onCall(this: ExpectContext, values: Record<string, any>) {
       const actual = this.flag('object') as Element;
       if (
@@ -253,7 +256,7 @@ export default function uvuDOM({
     },
   });
 
-  replaceProperty('style', {
+  addProperty('style', {
     onCall(this: ExpectContext, css: string | Record<string, any>) {
       const actual = this.flag('object') as Element;
       assert.instance(actual, Element);
@@ -262,13 +265,13 @@ export default function uvuDOM({
   });
 
   /* istanbul ignore next */
-  replaceProperty('notNormalized', {
+  addProperty('notNormalized', {
     onAccess(this: ExpectContext) {
       this.flag('notNormalized', true);
     },
   });
 
-  replaceProperty('text', {
+  addProperty('text', {
     onAccess(this: ExpectContext) {
       const notNormalized = this.flag('notNormalized');
       const actual: Element = this.flag('object') as Element;
@@ -285,13 +288,13 @@ export default function uvuDOM({
     },
   });
 
-  replaceProperty(['display', 'displayed'], {
+  addProperty(['display', 'displayed'], {
     onAccess(this: ExpectContext) {
       this.flag('display', true);
     },
   });
 
-  replaceProperty('value', {
+  addProperty('value', {
     onAccess(this: ExpectContext) {
       const actual = this.flag('object') as Element;
       assert.instance(actual, Element);
@@ -313,13 +316,13 @@ export default function uvuDOM({
     },
   });
 
-  replaceProperty('partially', {
+  addProperty('partially', {
     onAccess(this: ExpectContext) {
       this.flag('partially', true);
     },
   });
 
-  replaceProperty('checked', {
+  addProperty('checked', {
     onAccess(this: ExpectContext) {
       const actual = this.flag('object') as HTMLElement;
       assert.instance(actual, Element);
@@ -332,7 +335,7 @@ export default function uvuDOM({
     },
   });
 
-  replaceProperty('error', {
+  addProperty('error', {
     onAccess(this: ExpectContext) {
       const actual = this.flag('object') as HTMLElement;
       assert.instance(actual, Element);
