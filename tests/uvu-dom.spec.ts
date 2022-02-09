@@ -235,6 +235,7 @@ Dom('validates if element has an attribute', () => {
 
   expect(button).to.have.attribute('type').that.contains('sub');
   expect(button).to.have.attribute('type').that.does.not.contain('butt');
+  expect(button).not.to.have.attribute('novalidate');
 });
 
 Dom('validates if element has a class', () => {
