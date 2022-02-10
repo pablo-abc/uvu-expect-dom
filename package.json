@@ -21,7 +21,8 @@
     "dist",
     "extend.js",
     "extend.mjs",
-    "extend.cjs"
+    "extend.cjs",
+    "extend.d.ts"
   ],
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
