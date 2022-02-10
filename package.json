@@ -1,6 +1,6 @@
 {
   "name": "uvu-expect-dom",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "jest-dom style assertions for uvu-expect",
   "main": "dist/cjs/index.cjs",
   "browser": "dist/esm/index.mjs",
@@ -40,11 +40,11 @@
     "tsm": "^2.2.1",
     "typescript": "^4.5.5",
     "uvu": "^0.5.3",
-    "uvu-expect": "^0.2.2"
+    "uvu-expect": "^0.3.0"
   },
   "peerDependencies": {
     "uvu": "^0.5.3",
-    "uvu-expect": "^0.2.2"
+    "uvu-expect": "^0.3.0"
   },
   "exports": {
     ".": {
