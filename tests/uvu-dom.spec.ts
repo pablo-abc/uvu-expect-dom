@@ -208,18 +208,16 @@ Dom('vallidates if element has an accessible name', () => {
 <div><svg data-testid="svg-without-title"></svg></div>
 <input data-testid="input-title" title="test" />`;
   document.body.appendChild(div);
-  expect(screen.getByTestId('img-alt')).to.have.an.accessibleName.that.equals(
-    'Test alt'
-  );
-  expect(screen.getByTestId('img-empty-alt')).not.to.have.an.accessibleName;
-  expect(screen.getByTestId('svg-title')).to.have.an.accessibleName.that.equals(
+  expect(screen.getByTestId('img-alt')).to.have.a.name.that.equals('Test alt');
+  expect(screen.getByTestId('img-empty-alt')).not.to.have.a.name;
+  expect(screen.getByTestId('svg-title')).to.have.a.name.that.equals(
     'Test title'
   );
-  expect(screen.getByTestId('button-img-alt')).to.have.an.accessibleName;
-  expect(screen.getByTestId('img-paragraph')).not.to.have.an.accessibleName;
-  expect(screen.getByTestId('svg-button')).to.have.an.accessibleName;
-  expect(screen.getByTestId('svg-without-title')).not.to.have.an.accessibleName;
-  expect(screen.getByTestId('input-title')).to.have.an.accessibleName;
+  expect(screen.getByTestId('button-img-alt')).to.have.a.name;
+  expect(screen.getByTestId('img-paragraph')).not.to.have.a.name;
+  expect(screen.getByTestId('svg-button')).to.have.a.name;
+  expect(screen.getByTestId('svg-without-title')).not.to.have.a.name;
+  expect(screen.getByTestId('input-title')).to.have.a.name;
 });
 
 Dom('validates if element has an attribute', () => {

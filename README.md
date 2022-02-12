@@ -373,6 +373,8 @@ This allows you to assert that an element has the expected
 Every assertion done after `.description` is done on top of the accessible
 description of the element tested.
 
+You can use `.accessibleDescription` as an alias.
+
 #### Examples
 
 ```html
@@ -411,14 +413,16 @@ expect(getByTestId('logo')).to.have.a.description.that.contains(
 
 <hr />
 
-### `.accessibleName`
+### `.name`
 
 This allows you to assert that an element has the expected
 [accessible name](https://w3c.github.io/accname/). It is useful, for instance,
 to assert that form elements and buttons are properly labelled.
 
-Every assertion done after `.accessibleName` is done on top of the accessible
+Every assertion done after `.name` is done on top of the accessible
 name of the element tested.
+
+You can use `.accessibleName` as an alias.
 
 #### Examples
 
@@ -434,8 +438,8 @@ name of the element tested.
 ```
 
 ```javascript
-expect(getByTestId('img-alt')).to.have.accessibleName.that.equals('Test alt')
-expect(getByTestId('img-empty-alt')).not.to.have.accessibleName
+expect(getByTestId('img-alt')).to.have.a.name.that.equals('Test alt')
+expect(getByTestId('img-empty-alt')).not.to.have.a.name
 expect(getByTestId('svg-title')).to.have.accessibleName.that.equals('Test title')
 expect(getByTestId('button-img-alt')).to.have.accessibleName
 expect(getByTestId('img-paragraph')).not.to.have.accessibleName
@@ -479,6 +483,8 @@ its `class` attribute.
 Every assertion done after `.class` is done on the class of the element being
 tested. `include`, `members` and `equal` get extended to support a string with
 multiple classes.
+
+You can use `.className` as an alias.
 
 #### Examples
 
@@ -612,6 +618,8 @@ This allows you to check if a certain element has some specific css properties
 with specific values applied. It matches only if the element has _all_ the
 expected properties applied, not just some of them.
 
+You can use `.css` as an alias.
+
 #### Examples
 
 ```html
@@ -659,6 +667,8 @@ supports elements, but also text nodes and fragments.
 
 Every assertion done after this will be done on the textContent of the element
 being tested.
+
+You can use `.textContent` as an alias.
 
 #### Examples
 
@@ -719,10 +729,10 @@ expect(selectInput).to.have.value.that.has.members(['second', 'third'])
 
 <hr />
 
-### `.display`
+### `.display.value`
 
 This allows you to check whether the given form element has the specified
-displayed value (the one the end user will see) when used before `.value`.
+displayed value (the one the end user will see).
 It accepts `<input>`, `<select>` and `<textarea>` elements with the exception
 of `<input type="checkbox">` and `<input type="radio">`, which can be
 meaningfully matched only using [`.checked`](#checked) or
@@ -884,6 +894,8 @@ custom error message text. Multiple ids is **NOT** allowed. Authors MUST use
 [`aria-errormessage` spec](https://www.w3.org/TR/wai-aria/#aria-errormessage).
 
 Whitespace is normalized.
+
+You can use `.errormessage` as an alias.
 
 #### Examples
 

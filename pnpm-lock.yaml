@@ -21,7 +21,7 @@ specifiers:
   tsm: ^2.2.1
   typescript: ^4.5.5
   uvu: ^0.5.3
-  uvu-expect: ^0.3.0
+  uvu-expect: ^0.4.4
 
 dependencies:
   '@testing-library/jest-dom': 5.16.2
@@ -46,7 +46,7 @@ devDependencies:
   tsm: 2.2.1
   typescript: 4.5.5
   uvu: 0.5.3
-  uvu-expect: 0.3.0_uvu@0.5.3
+  uvu-expect: 0.4.4_uvu@0.5.3
 
 packages:
 
@@ -353,6 +353,20 @@ packages:
     dependencies:
       estree-walker: 2.0.2
       picomatch: 2.3.1
+    dev: true
+
+  /@sinonjs/commons/1.8.3:
+    resolution: {integrity: sha512-xkNcLAn/wZaX14RPlwizcKicDk9G3F8m2nU3L7Ukm5zBgTwiT0wsoFAHx9Jq56fJA1z/7uKGtCRu16sOUCLIHQ==}
+    dependencies:
+      type-detect: 4.0.8
+    dev: true
+
+  /@sinonjs/samsam/6.1.1:
+    resolution: {integrity: sha512-cZ7rKJTLiE7u7Wi/v9Hc2fs3Ucc3jrWeMgPHbbTCeVAB2S0wOBbYlkJVeNSL04i7fdhT8wIbDq1zhC/PXTD2SA==}
+    dependencies:
+      '@sinonjs/commons': 1.8.3
+      lodash.get: 4.4.2
+      type-detect: 4.0.8
     dev: true
 
   /@testing-library/dom/8.11.3:
@@ -1497,6 +1511,10 @@ packages:
     resolution: {integrity: sha1-+wMJF/hqMTTlvJvsDWngAT3f7bI=}
     dev: true
 
+  /lodash.get/4.4.2:
+    resolution: {integrity: sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=}
+    dev: true
+
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
 
@@ -2060,6 +2078,11 @@ packages:
       prelude-ls: 1.1.2
     dev: true
 
+  /type-detect/4.0.8:
+    resolution: {integrity: sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==}
+    engines: {node: '>=4'}
+    dev: true
+
   /type-fest/0.8.1:
     resolution: {integrity: sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==}
     engines: {node: '>=8'}
@@ -2092,11 +2115,13 @@ packages:
     hasBin: true
     dev: true
 
-  /uvu-expect/0.3.0_uvu@0.5.3:
-    resolution: {integrity: sha512-vpyGgjyPU6N6COEzTA2jKlu/dY0qmyYQF+FliKyZ6toDmxfBVMOsXor/jhmz+VTsitGN89WJgY/jwrCx0YMhjg==}
+  /uvu-expect/0.4.4_uvu@0.5.3:
+    resolution: {integrity: sha512-B7Jx75jVNhVB78dkGshM1RhOOqN5Q5hI0Elz0Jl54D2cj6yHZ5kgkv20/FjhF9OWwKh/7mcCddAycDybAkLJSg==}
     peerDependencies:
       uvu: ^0.5.3
     dependencies:
+      '@sinonjs/samsam': 6.1.1
+      kleur: 4.1.4
       lodash: 4.17.21
       tslib: 2.3.1
       uvu: 0.5.3

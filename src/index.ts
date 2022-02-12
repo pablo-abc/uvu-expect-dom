@@ -173,7 +173,7 @@ export default function uvuDOM({
     },
   }));
 
-  addProperty('description', {
+  addProperty(['description', 'accessibleDescription'], {
     onAccess(this: ExpectContext) {
       const actual = this.flag('object') as Element;
       assert.instance(actual, Element);
@@ -183,7 +183,7 @@ export default function uvuDOM({
     },
   });
 
-  addProperty('accessibleName', {
+  addProperty(['name', 'accessibleName'], {
     onAccess(this: ExpectContext) {
       const actual = this.flag('object') as Element;
       assert.instance(actual, Element);
@@ -201,7 +201,7 @@ export default function uvuDOM({
     },
   });
 
-  addProperty('class', {
+  addProperty(['class', 'className'], {
     onAccess(this: ExpectContext) {
       const actual = this.flag('object') as Element;
       assert.instance(actual, Element);
@@ -222,7 +222,7 @@ export default function uvuDOM({
     },
   });
 
-  replaceProperty(['equal', 'equals', 'eq'], (handler) => ({
+  replaceProperty(['equal', 'equals'], (handler) => ({
     onCall(this: ExpectContext, value: string) {
       if (this.flag('class')) {
         const actual = this.flag('object') as any;
@@ -256,7 +256,7 @@ export default function uvuDOM({
     },
   });
 
-  addProperty('style', {
+  addProperty(['style', 'css'], {
     onCall(this: ExpectContext, css: string | Record<string, any>) {
       const actual = this.flag('object') as Element;
       assert.instance(actual, Element);
@@ -271,7 +271,7 @@ export default function uvuDOM({
     },
   });
 
-  addProperty('text', {
+  addProperty(['text', 'textContent'], {
     onAccess(this: ExpectContext) {
       const notNormalized = this.flag('notNormalized');
       const actual: Element = this.flag('object') as Element;
@@ -335,7 +335,7 @@ export default function uvuDOM({
     },
   });
 
-  addProperty('error', {
+  addProperty(['error', 'errormessage'], {
     onAccess(this: ExpectContext) {
       const actual = this.flag('object') as HTMLElement;
       assert.instance(actual, Element);
