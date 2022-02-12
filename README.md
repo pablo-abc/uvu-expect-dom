@@ -500,7 +500,7 @@ const deleteButton = getByTestId('delete-button')
 const noClasses = getByTestId('no-classes')
 
 expect(deleteButton).to.have.class.that.contains('extra')
-expect(deleteButton).to.have.class.that.contains('btn-danger btn')
+expect(deleteButton).to.have.className.that.contains('btn-danger btn')
 expect(deleteButton).to.have.class.that.contains.members(['btn-danger', 'btn'])
 expect(deleteButton).to.have.class.that.does.not.contain('btn-link')
 

@@ -253,7 +253,7 @@ Dom('validates if element has a class', () => {
     'btn-danger',
     'btn',
   ]);
-  expect(deleteButton).not.to.have.class.that.contains('btn-link');
+  expect(deleteButton).to.have.class.that.does.not.contain('btn-link');
 
   expect(deleteButton).to.have.class.that.has.members([
     'btn-danger',

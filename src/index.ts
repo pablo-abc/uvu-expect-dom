@@ -205,6 +205,11 @@ export default function uvuDOM({
     onAccess(this: ExpectContext) {
       const actual = this.flag('object') as Element;
       assert.instance(actual, Element);
+      this.assert(
+        !!actual.className,
+        'Expected #{this} to have a class',
+        'Expected #{this} not to have a class'
+      );
       this.flag('object', splitClassNames(actual.className));
       this.flag('class', true);
     },
